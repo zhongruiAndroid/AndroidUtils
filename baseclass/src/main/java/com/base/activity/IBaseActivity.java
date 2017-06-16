@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.base.adapter.BaseRecyclerAdapter;
 import com.base.adapter.CommonAdapter;
 import com.base.view.Loading;
 import com.base.view.MyDialog;
@@ -30,6 +31,7 @@ import rx.subscriptions.CompositeSubscription;
 public class IBaseActivity extends AppCompatActivity {
     protected Activity mContext;
     protected CommonAdapter mAdapter;
+    protected BaseRecyclerAdapter mRcAdapter;
     protected MyPopupwindow mPopupwindow;
     protected MyDialog.Builder mDialog;
 
@@ -42,9 +44,6 @@ public class IBaseActivity extends AppCompatActivity {
         mContext = this;
     }
 
-    protected Intent getmIntent() {
-        return new Intent();
-    }
 
     protected View inflateView(int resource, ViewGroup viewGroup) {
         return LayoutInflater.from(this).inflate(resource, viewGroup);
