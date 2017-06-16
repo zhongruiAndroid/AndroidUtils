@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:clickable="true"
+             android:orientation="vertical"
+             android:padding="20dp">
+
+    <com.github.customview.MyLinearLayout
+        android:id="@+id/ll_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:my_ll_solid="@color/white"
+        app:my_ll_corner_radius="8dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="提示"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:visibility="visible" />
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.5"
+            android:minHeight="50dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/black"
+            android:text="确定退出吗？"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ffd0d0d0"
+            />
+
+        <com.github.customview.MyLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            app:my_ll_corner_bottomLeftRadius="8dp"
+            app:my_ll_corner_bottomRightRadius="8dp"
+            android:orientation="horizontal" >
+            <com.github.customview.MyButton
+                android:id="@+id/negativeButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:my_bt_solid="@color/white"
+                app:my_bt_press="@color/c_press"
+                app:my_bt_corner_bottomLeftRadius="8dp"
+                android:background="@null"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="@color/dodgerblue"
+                android:textSize="15dp"
+                />
+            <View
+                android:id="@+id/v_xian"
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#ffd0d0d0"
+                />
+            <com.github.customview.MyButton
+                android:id="@+id/positiveButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:my_bt_solid="@color/white"
+                app:my_bt_press="@color/c_press"
+                app:my_bt_corner_bottomRightRadius="8dp"
+                android:background="@null"
+                android:gravity="center"
+                android:textColor="@color/dodgerblue"
+                android:text="确定"
+                android:textSize="15dp" />
+        </com.github.customview.MyLinearLayout>
+    </com.github.customview.MyLinearLayout>
+
+</FrameLayout>
