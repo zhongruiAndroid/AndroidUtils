@@ -3,6 +3,8 @@ package com.base;
 import android.content.Context;
 import android.content.res.Resources;
 
+import com.base.view.MyDialog;
+import com.base.view.MyPopupwindow;
 import com.github.tools.rx.IOCallBack;
 
 import rx.Subscription;
@@ -15,11 +17,15 @@ public abstract class IPresenter<V extends BaseView>{
     protected V mView;
     protected Context mContext;
     private CompositeSubscription mCSubscription;
+    protected MyPopupwindow mPopupwindow;
+    protected MyDialog.Builder mDialog;
     public IPresenter(Context context) {
         mContext=context;
     }
     public void attach(V view){
-        mView=view;
+        if(mView==null){
+            mView=view;
+        }
     }
     public void detach(){
         onUnSubscription();
