@@ -1,0 +1,84 @@
+private void initAddressDialog() {
+        // 收起键盘
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+        options1Items = new ArrayList<String>();
+        options2Items = new ArrayList<ArrayList<String>>();
+        options3Items = new ArrayList<ArrayList<ArrayList<String>>>();
+        InputStream inputStream = getResources().openRawResource(R.raw.region);
+        province(inputStream);
+        // 地址选择器
+        pwOptions = new OptionsPopupWindow(this, "选择地区");
+        // 三级联动效果
+        pwOptions.setPicker(options1Items, options2Items, options3Items, true);
+        // 设置默认选中的三级项目
+        pwOptions.setSelectOptions(0, 0, 0);
+        // 监听确定选择按钮
+        pwOptions.setOnoptionsSelectListener(new OptionsPopupWindow.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3) {
+                // 返回的分别是三个级别的选中位置
+                String tx = options1Items.get(options1) + ","
+                        + options2Items.get(options1).get(option2) + ","
+                        + options3Items.get(options1).get(option2).get(options3);
+                tvAddress.setText(tx);
+            }
+        });
+        pwOptions.showAtLocation(LayoutInflater.from(this).inflate(R.layout.activity_regist_shop_info, null),
+                Gravity.BOTTOM, ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+    }
+
+
+
+    private void province(InputStream inputStream) {
+            String a = getString(inputStream);
+            try {
+                JSONObject jsondata = new JSONObject(a);
+                Gson gson = new Gson();
+                province = gson.fromJson(jsondata.getString("data"),
+                        new TypeToken<List<ProvinceBase>>() {
+                        }.getType());
+                Log.e("tag", province.toString());
+                ArrayList<String> options2Items_i = null;
+                ArrayList<ArrayList<String>> options3Items_j = null;
+                for (int i = 0; i < province.size(); i++) {
+                    options1Items.add(province.get(i).getName());
+                    city = province.get(i).getCity();
+                    options2Items_i = new ArrayList<String>();
+                    options3Items_j = new ArrayList<ArrayList<String>>();
+                    for (int j = 0; j < city.size(); j++) {
+                        options2Items_i.add(city.get(j).getName());
+                        region = city.get(j).getArea();
+                        ArrayList<String> options3Items_j_j2 = new ArrayList<String>();
+                        for (int j2 = 0; j2 < region.size(); j2++) {
+                            options3Items_j_j2.add(region.get(j2).getName());
+                        }
+                        options3Items_j.add(options3Items_j_j2);
+                    }
+                    options2Items.add(options2Items_i);
+                    options3Items.add(options3Items_j);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        public static String getString(InputStream inputStream) {
+            InputStreamReader inputStreamReader = null;
+            try {
+                inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+            } catch (UnsupportedEncodingException e1) {
+                e1.printStackTrace();
+            }
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+            StringBuffer sb = new StringBuffer("");
+            String line;
+            try {
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                    sb.append("\n");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return sb.toString();
+        }
