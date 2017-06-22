@@ -17,7 +17,7 @@
             android:background="@android:color/transparent"
             android:gravity="center"
             android:text="取消"
-            android:textColor="@color/gray_99" />
+            android:textColor="#999999" />
 
         <Button
             android:id="@+id/btnSubmit"
@@ -27,7 +27,7 @@
             android:background="@android:color/transparent"
             android:gravity="center"
             android:text="确认"
-            android:textColor="@color/red_da" />
+            android:textColor="#da251c" />
     </RelativeLayout>
 
     <View
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/timepicker"
             android:layout_alignTop="@id/timepicker"
-            android:background="@mipmap/bg_above_timepicker" />
+            android:background="@drawable/bg_above_timepicker" />
     </RelativeLayout>
 
 </LinearLayout>

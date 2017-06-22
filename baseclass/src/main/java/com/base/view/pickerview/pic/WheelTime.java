@@ -3,9 +3,11 @@ package com.base.view.pickerview.pic;
 import android.content.Context;
 import android.view.View;
 
-import com.haitaoit.peihuotong.R;
-import com.haitaoit.peihuotong.view.pickerview.TimePopupWindow;
-
+import com.base.R;
+import com.base.view.pickerview.TimePopupWindow;
+/*
+import com.base.R;
+import com.base.view.pickerview.TimePopupWindow;*/
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
