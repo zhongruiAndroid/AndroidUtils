@@ -261,4 +261,23 @@ public class StringUtils {
         }
         return sb.toString();
     }
+
+    /**
+     * 从字符串里面取数字
+     * @param string
+     * @return
+     */
+    public static String getNumFromString(String string){
+        String str=string.trim();
+        String numStr="";
+        if(str != null && !"".equals(str)){
+            for(int i=0;i<str.length();i++){
+                if(str.charAt(i)>=48 && str.charAt(i)<=57){
+                    numStr+=str.charAt(i);
+                }
+            }
+        }
+        return numStr;
+    }
+
 }
