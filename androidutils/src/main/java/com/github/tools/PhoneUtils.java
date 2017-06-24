@@ -17,6 +17,26 @@ import android.view.inputmethod.InputMethodManager;
  * Created by Administrator on 2016/9/6.
  */
 public class PhoneUtils {
+    public static int getScreenWidth(Context context) {
+        return getDisplayMetrics(context).widthPixels;
+    }
+    public static int getScreenHeight(Context context) {
+        return getDisplayMetrics(context).heightPixels;
+    }
+    /**
+     * 获取屏幕显示指标
+     * densityDpi  ===480像素密度
+     * density     ===3.0  480/160
+     * xdpi        ===422.03
+     * ydpi        ===424.069
+     * widthPixels ===1080
+     * heightPixels===1794
+     * @param context
+     * @return
+     */
+    public static DisplayMetrics getDisplayMetrics(Context context){
+        return context.getResources().getDisplayMetrics();
+    }
     public static int getPhoneWidth(Context context) {
         Point point = new Point();
         ((Activity)context).getWindowManager().getDefaultDisplay().getSize(point);
