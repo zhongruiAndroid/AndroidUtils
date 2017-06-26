@@ -132,6 +132,9 @@ public class IBaseActivity extends AppCompatActivity {
     }
 
     /****************************************************************************/
+    protected void getRxBusEvent(){
+
+    }
     protected <T> void RXStart(final IOCallBack<T> callBack) {
         Subscription subscribe = Observable.create(new Observable.OnSubscribe<T>() {
             @Override
