@@ -17,6 +17,8 @@ import com.base.view.MyDialog;
 import com.base.view.MyPopupwindow;
 import com.github.androidtools.ToastUtils;
 import com.github.androidtools.rx.IOCallBack;
+import com.github.androidtools.rx.MySubscriber;
+import com.github.androidtools.rx.RxBus;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -132,8 +134,9 @@ public class IBaseActivity extends AppCompatActivity {
     }
 
     /****************************************************************************/
-    protected void getRxBusEvent(){
-
+    protected <T> void getRxBusEvent(Class<T>event,MySubscriber subscriber){
+        Subscription subscription = RxBus.getInstance().getEvent(event, subscriber);
+        addSubscription(subscription);
     }
     protected <T> void RXStart(final IOCallBack<T> callBack) {
         Subscription subscribe = Observable.create(new Observable.OnSubscribe<T>() {
