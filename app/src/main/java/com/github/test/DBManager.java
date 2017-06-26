@@ -1,4 +1,4 @@
-package com.github.tools;
+package com.github.test;
 
 import android.content.ContentValues;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.github.tools;
+package com.github.test;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
