@@ -1,4 +1,4 @@
-package com.github.tools.rx;
+package com.github.androidtools.rx;
 
 import rx.Subscriber;
 

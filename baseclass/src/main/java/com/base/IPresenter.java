@@ -5,7 +5,7 @@ import android.content.res.Resources;
 
 import com.base.view.MyDialog;
 import com.base.view.MyPopupwindow;
-import com.github.tools.rx.IOCallBack;
+import com.github.androidtools.rx.IOCallBack;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;

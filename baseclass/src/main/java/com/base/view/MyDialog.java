@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.base.R;
 import com.github.customview.MyButton;
-import com.github.tools.PhoneUtils;
+import com.github.androidtools.PhoneUtils;
 
 
 public class MyDialog extends Dialog {
