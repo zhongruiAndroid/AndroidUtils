@@ -1,15 +1,10 @@
 package com.github.androidtools;
 
-import com.google.gson.Gson;
-
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-
 /**
  * Created by Administrator on 2016/9/28.
  */
 public class GsonUtils {
-    private static GsonUtils gsonUtils;
+    /*private static GsonUtils gsonUtils;
     private static Gson gson;
     private GsonUtils() {
         gson=new Gson();
@@ -53,5 +48,5 @@ public class GsonUtils {
     }
     public static Object toObj(String string,Class clzz) {
         return new Gson().fromJson(string,clzz);
-    }
+    }*/
 }
