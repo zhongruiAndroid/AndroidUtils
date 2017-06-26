@@ -11,5 +11,6 @@ public abstract class IOCallBack<T> {
     public void onMyCompleted(){
     };
     public void onMyError(Throwable e){
+        e.printStackTrace();
     };
 }

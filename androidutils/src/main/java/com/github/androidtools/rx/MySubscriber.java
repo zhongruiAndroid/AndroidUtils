@@ -17,6 +17,7 @@ public abstract class MySubscriber<T> extends Subscriber {
     }
     @Override
     public void onError(Throwable e) {
+        e.printStackTrace();
         onMyError(e);
     }
     @Override
