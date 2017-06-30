@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Administrator on 2017/5/15.
  */
 
-public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
+public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
 
     protected  List<T> mData;
     protected final Context mContext;
@@ -55,7 +55,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         bindData(holder, position, mData.get(position));
     }
 
