@@ -25,7 +25,9 @@ dependencies {
     //loading
     compile 'com.pnikosis:materialish-progress:1.7'
     compile 'com.github:customview:1.0.9'
-    compile project(':androidutils')
+//    compile project(':androidutils')
+    compile 'com.github:androidutils:1.0.1'
+    compile 'com.github:customview:1.0.9'
     compile 'com.android.support:recyclerview-v7:24.2.1'
 }
 /***************发布aar包的配置**********************/
