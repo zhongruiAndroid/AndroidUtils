@@ -53,7 +53,7 @@ public abstract class LoadMoreAdapter<T> extends RecyclerView.Adapter<LoadMoreVi
 
     abstract public int getItemLayoutId(int viewType);
 
-    abstract public void bindData(RecyclerView.ViewHolder holder, int position, T bean);
+    abstract public void bindData(LoadMoreViewHolder holder, int position, T bean);
 
     @Override
     public LoadMoreViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
