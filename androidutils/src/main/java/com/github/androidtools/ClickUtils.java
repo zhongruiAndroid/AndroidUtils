@@ -10,9 +10,9 @@ import java.util.Calendar;
  */
 public class ClickUtils {
     private static SparseLongArray sLastClickTime;
-
+    private static final int MIN_CLICK_DELAY_TIME = 900;
     public synchronized static boolean isFastClick(View view){
-        return isFastClick(view,1500);
+        return isFastClick(view,MIN_CLICK_DELAY_TIME);
     }
     public synchronized static boolean isFastClick(View view,int time){
         if(sLastClickTime==null){
@@ -27,7 +27,7 @@ public class ClickUtils {
     }
 
     public synchronized static boolean isFastClickById(int itemId){
-        return isFastClickById(itemId,1500);
+        return isFastClickById(itemId,MIN_CLICK_DELAY_TIME);
     }
     public synchronized static boolean isFastClickById(int itemId,int time){
         if(sLastClickTime==null){
