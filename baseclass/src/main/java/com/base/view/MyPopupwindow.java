@@ -1,8 +1,10 @@
 package com.base.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +16,6 @@ import android.widget.PopupWindow;
  */
 public class MyPopupwindow extends PopupWindow{
     private Context context;
-    private Drawable backgroundColor;
     public MyPopupwindow(Context ctx,int contentView) {
         context=ctx;
         View view = LayoutInflater.from(ctx).inflate(contentView, null);
@@ -37,10 +38,12 @@ public class MyPopupwindow extends PopupWindow{
         setPopupwindow(contentView, -1, -1);
     }
     private void setPopupwindow(View contentView,int width,int height) {
-        setBackground();
+        setBackgroundColor();
         setOutsideTouchable(true);
         setFocusable(true);
-        setContentView(contentView);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setElevation(25);
+        }
         if(width==-1){
             setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         }else{
@@ -51,20 +54,20 @@ public class MyPopupwindow extends PopupWindow{
         }else{
             setHeight(height);
         }
+        setContentView(contentView);
         setOnDismissListener(getOnDismissListener());
     }
-
-    public void setBackgroundColor(int color){
-        backgroundColor=new ColorDrawable(context.getResources().getColor(color));
+    public void setBackground(int color){
+        setBackgroundDrawable(context.getResources().getDrawable(color));
     }
-    public void setBackgroundColor(Drawable color){
-        backgroundColor=color;
+    public void setBackground(String color){
+        setBackgroundDrawable(new ColorDrawable(Color.parseColor(color)));
     }
-    private void setBackground(){
-        if(backgroundColor==null){
-            backgroundColor= new ColorDrawable(0x000000);
-        }
-        this.setBackgroundDrawable(backgroundColor);
+    public void setBackground(Drawable color){
+        setBackgroundDrawable(color);
+    }
+    private void setBackgroundColor(){
+        this.setBackgroundDrawable(new ColorDrawable(0xFFFFFFFF));
 //        WindowManager.LayoutParams lp=((Activity)context).getWindow().getAttributes();
 //        lp.alpha = 0.7f;
 //        ((Activity)context).getWindow().setAttributes(lp);
@@ -83,6 +86,9 @@ public class MyPopupwindow extends PopupWindow{
             }
         };
     }
-
-
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        context=null;
+    }
 }
