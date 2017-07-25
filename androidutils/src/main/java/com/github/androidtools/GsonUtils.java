@@ -4,6 +4,9 @@ package com.github.androidtools;
  * Created by Administrator on 2016/9/28.
  */
 public class GsonUtils {
+    public void toObj(){
+//        new Gson().fromJson(str, new TypeToken<List<DyshowlistBean>>(){}.getType());
+    }
     /*private static GsonUtils gsonUtils;
     private static Gson gson;
     private GsonUtils() {
