@@ -286,8 +286,8 @@ public class StringUtils {
      * @return
      */
     public static boolean isOnlyPointNumber(String str) {//保留两位小数正则
-        if(str.indexOf(".")<=0){
-            return true;
+        if(str.indexOf(".")==0){
+            str="0"+str;
         }
         Pattern pattern = Pattern.compile("^\\d+\\.?\\d{0,2}$");
         Matcher matcher = pattern.matcher(str);
