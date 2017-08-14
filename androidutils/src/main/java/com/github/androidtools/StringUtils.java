@@ -280,4 +280,17 @@ public class StringUtils {
         return numStr;
     }
 
+    /**
+     * 判断是否是小数点后面2位
+     * @param str
+     * @return
+     */
+    public static boolean isOnlyPointNumber(String str) {//保留两位小数正则
+        if(str.indexOf(".")<=0){
+            return true;
+        }
+        Pattern pattern = Pattern.compile("^\\d+\\.?\\d{0,2}$");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
+    }
 }
