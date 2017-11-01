@@ -286,11 +286,30 @@ public class StringUtils {
      * @return
      */
     public static boolean isOnlyPointNumber(String str) {//保留两位小数正则
-        if(str.indexOf(".")==0){
+        if(str.indexOf(".")==-1){
+            return true;
+        }else if(str.indexOf(".")==0){
             str="0"+str;
         }
         Pattern pattern = Pattern.compile("^\\d+\\.?\\d{0,2}$");
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
     }
+
+    /*判断金额是否大于零*/
+    /*if(money.length()==1&&money.indexOf(".")==0){
+        showMsg("请输入金额");
+        return;
+    }
+    if(money.indexOf(".")==0){
+        money="0"+money;
+    }
+    if(money.indexOf(".")==money.length()-1){
+        money=money.replace(".","");
+    }
+    double resultMoney = Double.parseDouble(money);
+    if(resultMoney<=0){
+        showMsg("请输入金额");
+        return;
+    }*/
 }
