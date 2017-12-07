@@ -10,14 +10,14 @@ public class SPU{
 
 
     /********************************************************************************************************************/
-    public static String getPrefString(String fileName,Context context, String key, final String defaultValue) {
+    public static String getString(String fileName,Context context, String key, final String defaultValue) {
         final SharedPreferences settings = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
         return settings.getString(key, defaultValue);
 
     }
-    public static String getPrefString(Context context, String key, final String defaultValue) {
+    public static String getString(Context context, String key, final String defaultValue) {
         String fileName = context.getPackageName().replace(".","_");
-        return getPrefString(fileName,context,key,defaultValue);
+        return getString(fileName,context,key,defaultValue);
     }
     /********************************************************************************************************************/
     public static void setPrefString(Context context, final String key, final String value) {
@@ -30,11 +30,11 @@ public class SPU{
     }
 
     /********************************************************************************************************************/
-    public static boolean getPrefBoolean(Context context, final String key, final boolean defaultValue) {
+    public static boolean getBoolean(Context context, final String key, final boolean defaultValue) {
         String fileName = context.getPackageName().replace(".","_");
-        return getPrefBoolean(fileName,context,key,defaultValue);
+        return getBoolean(fileName,context,key,defaultValue);
     }
-    public static boolean getPrefBoolean(String fileName,Context context, final String key, final boolean defaultValue) {
+    public static boolean getBoolean(String fileName,Context context, final String key, final boolean defaultValue) {
         final SharedPreferences settings = context.getSharedPreferences(
                 fileName, Context.MODE_PRIVATE);
         return settings.getBoolean(key, defaultValue);
@@ -71,11 +71,11 @@ public class SPU{
         settings.edit().putInt(key, value).apply();
     }
     /********************************************************************************************************************/
-    public static int getPrefInt( Context context, final String key, final int defaultValue) {
+    public static int getInt( Context context, final String key, final int defaultValue) {
         String fileName = context.getPackageName().replace(".","_");
-        return getPrefInt(fileName,context,key,defaultValue);
+        return getInt(fileName,context,key,defaultValue);
     }
-    public static int getPrefInt(String fileName,Context context, final String key, final int defaultValue) {
+    public static int getInt(String fileName,Context context, final String key, final int defaultValue) {
         final SharedPreferences settings = context.getSharedPreferences(
                 fileName, Context.MODE_PRIVATE);
         return settings.getInt(key, defaultValue);
@@ -91,11 +91,11 @@ public class SPU{
         settings.edit().putFloat(key, value).apply();
     }
     /********************************************************************************************************************/
-    public static float getPrefFloat(Context context, final String key, final float defaultValue) {
+    public static float getFloat(Context context, final String key, final float defaultValue) {
         String fileName = context.getPackageName().replace(".","_");
-        return getPrefFloat(fileName,context,key,defaultValue);
+        return getFloat(fileName,context,key,defaultValue);
     }
-    public static float getPrefFloat(String fileName,Context context, final String key, final float defaultValue) {
+    public static float getFloat(String fileName,Context context, final String key, final float defaultValue) {
         final SharedPreferences settings = context.getSharedPreferences(
                 fileName, Context.MODE_PRIVATE);
         return settings.getFloat(key, defaultValue);
@@ -111,11 +111,11 @@ public class SPU{
         settings.edit().putLong(key, value).apply();
     }
     /********************************************************************************************************************/
-    public static long getPrefLong(Context context, final String key, final long defaultValue) {
+    public static long getLong(Context context, final String key, final long defaultValue) {
         String fileName = context.getPackageName().replace(".","_");
-        return getPrefLong(fileName,context,key,defaultValue);
+        return getLong(fileName,context,key,defaultValue);
     }
-    public static long getPrefLong(String fileName,Context context, final String key, final long defaultValue) {
+    public static long getLong(String fileName,Context context, final String key, final long defaultValue) {
         final SharedPreferences settings = context.getSharedPreferences(
                 fileName, Context.MODE_PRIVATE);
         return settings.getLong(key, defaultValue);
