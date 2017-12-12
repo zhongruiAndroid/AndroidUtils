@@ -1,3 +1,4 @@
 /build
 *.iml
+*.log
 Test.java
