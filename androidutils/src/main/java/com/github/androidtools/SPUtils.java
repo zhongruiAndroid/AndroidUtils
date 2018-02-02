@@ -99,11 +99,11 @@ public class SPUtils {
         return settings.getFloat(key, defaultValue);
     }
     /********************************************************************************************************************/
-    public static void setSettingLong(Context context, final String key, final long value) {
+    public static void setPreLong(Context context, final String key, final long value) {
         String fileName = context.getPackageName().replace(".","_");
-        setSettingLong(fileName,context,key,value);
+        setPreLong(fileName,context,key,value);
     }
-    public static void setSettingLong(String fileName,Context context, final String key, final long value) {
+    public static void setPreLong(String fileName,Context context, final String key, final long value) {
         final SharedPreferences settings = context.getSharedPreferences(
                 fileName, Context.MODE_PRIVATE);
         settings.edit().putLong(key, value).commit();
