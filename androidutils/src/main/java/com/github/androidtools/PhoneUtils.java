@@ -104,6 +104,9 @@ public class PhoneUtils {
      * @param activity
      */
     public static void hiddenKeyBoard(Activity activity){
+        if(activity.getCurrentFocus()==null){
+            return;
+        }
         ((InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE))
                 .hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),0);
     }
