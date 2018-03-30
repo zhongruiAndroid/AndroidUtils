@@ -364,7 +364,14 @@ public class RichEditor extends WebView {
     exec("javascript:RE.setNumbers();");
   }
 
+  private boolean firstAddImg=true;
   public void insertImage(String url, String alt) {
+      if (firstAddImg) {
+          firstAddImg = false;
+          if (!isFocused()) {
+              focusEditor();
+          }
+      }
     exec("javascript:RE.prepareInsert();");
     exec("javascript:RE.insertImage('" + url + "', '" + alt + "');");
   }
