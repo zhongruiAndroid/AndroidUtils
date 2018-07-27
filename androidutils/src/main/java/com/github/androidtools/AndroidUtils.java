@@ -88,7 +88,15 @@ public class AndroidUtils {
         bd = null;
         return d;
     }
+    public static BigDecimal round(BigDecimal bd, int scale,
+                               int roundingMode) {
+        bd = bd.setScale(scale, roundingMode);
+        return bd;
+    }
     public static double round(double value) {
+        return round(value,2, BigDecimal.ROUND_HALF_UP);
+    }
+    public static BigDecimal round(BigDecimal value) {
         return round(value,2, BigDecimal.ROUND_HALF_UP);
     }
 
@@ -103,6 +111,9 @@ public class AndroidUtils {
         BigDecimal bd2 = new BigDecimal(d2);
         return round(bd1.add(bd2).doubleValue());
     }
+    public static BigDecimal jiaFa(BigDecimal bd1,BigDecimal bd2){
+        return round(bd1.add(bd2));
+    }
 
 
     /**
@@ -116,6 +127,9 @@ public class AndroidUtils {
         BigDecimal bd2 = new BigDecimal(Double.toString(d2));
         return round(bd1.subtract(bd2).doubleValue());
     }
+    public static BigDecimal jianFa(BigDecimal bd1,BigDecimal bd2){
+        return round(bd1.subtract(bd2));
+    }
 
     /**
      * double 乘法
@@ -127,6 +141,9 @@ public class AndroidUtils {
         BigDecimal bd1 = new BigDecimal(d1);
         BigDecimal bd2 = new BigDecimal(d2);
         return round(bd1.multiply(bd2).doubleValue());
+    }
+    public static BigDecimal chengFa(BigDecimal bd1,BigDecimal bd2){
+        return round(bd1.multiply(bd2));
     }
 
 
@@ -153,8 +170,23 @@ public class AndroidUtils {
         return bd1.divide
                 (bd2, scale, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
-    public static double chuFa(double d1,double d2) {
+    public static BigDecimal chuFa(BigDecimal bd1,BigDecimal bd2,int scale) {
+        //  当然在此之前，你要判断分母是否为0，
+        //  为0你可以根据实际需求做相应的处理
+        try {
+            if(bd2.doubleValue()==0){
+                throw new Exception("分母不能为0");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bd1.divide(bd2, scale, BigDecimal.ROUND_HALF_UP);
+    }
+    public static BigDecimal chuFa(BigDecimal d1,BigDecimal d2) {
          return chuFa( d1, d2,2 );
+    }
+    public static double chuFa(double d1,double d2) {
+        return chuFa( d1, d2,2 );
     }
     /**
      * 将double类型数据转为字符串
