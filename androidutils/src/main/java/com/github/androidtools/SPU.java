@@ -3,12 +3,32 @@ package com.github.androidtools;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Set;
+
 /**
  * Created by Administrator on 2016/10/25.
  */
 public class SPU{
 
+    /********************************************************************************************************************/
+    public static Set<String> getStringSet(String fileName,Context context, String key, final Set<String> defaultValue) {
+        final SharedPreferences settings = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
+        return settings.getStringSet(key, defaultValue);
 
+    }
+    public static Set<String> getStringSet(Context context, String key, final Set<String> defaultValue) {
+        String fileName = context.getPackageName().replace(".","_");
+        return getStringSet(fileName,context,key,defaultValue);
+    }
+    /********************************************************************************************************************/
+    public static void setPrefStringSet(Context context, final String key, final Set<String> value) {
+        String fileName = context.getPackageName().replace(".","_");
+        setPrefStringSet(fileName,context,key,value);
+    }
+    public static void setPrefStringSet(String fileName,Context context, final String key, final Set<String> value) {
+        final SharedPreferences settings = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
+        settings.edit().putStringSet(key, value).apply();
+    }
     /********************************************************************************************************************/
     public static String getString(String fileName,Context context, String key, final String defaultValue) {
         final SharedPreferences settings = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
