@@ -26,9 +26,9 @@ import java.io.ByteArrayOutputStream;
  * limitations under the License.
  */
 
-public final class Utils {
+public final class RichEditorUtils {
 
-  private Utils() throws InstantiationException {
+  private RichEditorUtils() throws InstantiationException {
     throw new InstantiationException("This class is not for instantiation");
   }
 

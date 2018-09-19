@@ -223,16 +223,16 @@ public class RichEditor extends WebView {
   }
 
   @Override public void setBackgroundResource(int resid) {
-    Bitmap bitmap = Utils.decodeResource(getContext(), resid);
-    String base64 = Utils.toBase64(bitmap);
+    Bitmap bitmap = RichEditorUtils.decodeResource(getContext(), resid);
+    String base64 = RichEditorUtils.toBase64(bitmap);
     bitmap.recycle();
 
     exec("javascript:RE.setBackgroundImage('url(data:image/png;base64," + base64 + ")');");
   }
 
   @Override public void setBackground(Drawable background) {
-    Bitmap bitmap = Utils.toBitmap(background);
-    String base64 = Utils.toBase64(bitmap);
+    Bitmap bitmap = RichEditorUtils.toBitmap(background);
+    String base64 = RichEditorUtils.toBase64(bitmap);
     bitmap.recycle();
 
     exec("javascript:RE.setBackgroundImage('url(data:image/png;base64," + base64 + ")');");
@@ -383,7 +383,7 @@ public class RichEditor extends WebView {
 
   public void insertTodo() {
     exec("javascript:RE.prepareInsert();");
-    exec("javascript:RE.setTodo('" + Utils.getCurrentTime() + "');");
+    exec("javascript:RE.setTodo('" + RichEditorUtils.getCurrentTime() + "');");
   }
 
   public void focusEditor() {
