@@ -175,7 +175,7 @@ public class AndroidUtils {
         //  为0你可以根据实际需求做相应的处理
         try {
             if(bd2.doubleValue()==0){
-                throw new Exception("分母不能为0");
+                throw new IllegalStateException("分母不能为0");
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -25,7 +25,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
 }
-/***************发布aar包的配置**********************/
+/*
+
+*/
+/***************发布aar包的配置**********************//*
+
 
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
@@ -126,4 +130,4 @@ bintray {
         licenses = ["Apache-2.0"]
         publish = true // 是否是公开项目。
     }
-}
+}*/

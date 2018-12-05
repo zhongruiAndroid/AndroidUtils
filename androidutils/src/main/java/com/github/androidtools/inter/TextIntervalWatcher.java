@@ -9,14 +9,19 @@ import android.text.TextWatcher;
 /***
  *   created by zhongrui on 2018/9/19
  */
-public abstract class MyTextWatcher implements TextWatcher {
-    public abstract void  myAfterTextChanged(boolean haveInterval,Editable s);
+public abstract class TextIntervalWatcher implements TextWatcher {
+    public abstract void afterTextIntervalChanged(boolean haveInterval, Editable s);
     private Handler handler;
     private boolean isFirst=true;
     private Runnable runnable;
     private Editable lastStr;
     private Editable currentStr;
-    public MyTextWatcher() {
+    private long timeInterval=800;
+    public TextIntervalWatcher() {
+        this(800);
+    }
+    public TextIntervalWatcher(int interval) {
+        timeInterval=interval;
         handler=new Handler(Looper.getMainLooper());
         runnable=new Runnable() {
             @Override
@@ -24,17 +29,17 @@ public abstract class MyTextWatcher implements TextWatcher {
                 if(isFirst||!TextUtils.equals(currentStr,lastStr)){
                     lastStr=currentStr;
                     isFirst=false;
-                    myAfterTextChanged(true,lastStr);
+                    afterTextIntervalChanged(true,lastStr);
                 }
             }
         };
     }
     @Override
     public void afterTextChanged(final Editable s) {
-        myAfterTextChanged(false,s);
+        afterTextIntervalChanged(false,s);
         currentStr=s;
         handler.removeCallbacks(runnable);
-        handler.postDelayed(runnable,800);
+        handler.postDelayed(runnable,timeInterval);
     }
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {

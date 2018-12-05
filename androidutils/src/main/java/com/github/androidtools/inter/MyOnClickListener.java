@@ -11,6 +11,9 @@ public abstract class MyOnClickListener implements View.OnClickListener{
     private static int MIN_CLICK_DELAY_TIME = 900;
     private long lastClickTime = 0;
 
+    public MyOnClickListener() {
+        this(900);
+    }
     public MyOnClickListener(int interval) {
         this.MIN_CLICK_DELAY_TIME=interval;
     }

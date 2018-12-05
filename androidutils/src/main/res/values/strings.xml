@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidUtils</string>
+    <string name="strSpace">&#8194;</string>
 </resources>
