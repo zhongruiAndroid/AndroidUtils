@@ -49,14 +49,23 @@ public class PhoneUtils {
         ((Activity)context).getWindowManager().getDefaultDisplay().getSize(point);
         return point.y;
     }
-    public static int px2dip(Context context, float pxValue) {
+    public static float px2dip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
+        return  (pxValue / scale + 0.5f);
     }
 
-    public static int dip2px(Context context, float dipValue) {
+    public static float dip2px(Context context, float dipValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dipValue * scale + 0.5f);
+        return  (dipValue * scale + 0.5f);
+    }
+    public static int pxToDip(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return  (int)(pxValue / scale + 0.5f);
+    }
+
+    public static int dipToPx(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return  (int)(dipValue * scale + 0.5f);
     }
     public static void copyText(Context context,String text){
         ClipboardManager cm = (ClipboardManager)(context).getSystemService(Context.CLIPBOARD_SERVICE);
