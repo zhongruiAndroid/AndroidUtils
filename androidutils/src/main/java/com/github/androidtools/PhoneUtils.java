@@ -9,6 +9,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v4.math.MathUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -146,6 +147,11 @@ public class PhoneUtils {
         return screenHeight - rect.bottom-navigationBarHeight != 0;
     }
 
+    /**
+     * 虚拟按键隐藏之后无法获取高度
+     * @param activity
+     * @return
+     */
     public static int getNavigationBarHeight(Activity activity) {
         DisplayMetrics metrics = new DisplayMetrics();
         //这个方法获取可能不是真实屏幕的高度(可能不包含底部导航栏高度)
@@ -162,11 +168,6 @@ public class PhoneUtils {
             return 0;
         }
     }
-
-
-
-
-
 
     /**
      * 对double数据进行取精度.
