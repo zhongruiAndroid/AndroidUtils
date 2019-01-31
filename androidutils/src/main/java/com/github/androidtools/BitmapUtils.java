@@ -792,9 +792,7 @@ public class BitmapUtils {
 
     /////////////// VectorDrawable /////////////////////
 
-    public static
-    @Nullable
-    Drawable getVectorDrawable(Context context, @DrawableRes int resVector) {
+    public static Drawable getVectorDrawable(Context context, @DrawableRes int resVector) {
         try {
             return AppCompatResources.getDrawable(context, resVector);
         } catch (Exception e) {

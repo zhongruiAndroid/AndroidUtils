@@ -10,8 +10,23 @@ import java.util.Set;
  */
 public class SPUtils {
     private static String xmlName;
+    private static Context mContext;
+
+    public static void init(Context context){
+        mContext=context;
+    }
     public static void init(String fileName){
         xmlName=fileName;
+    }
+    public static void init(Context context,String fileName){
+        mContext=context;
+        xmlName=fileName;
+    }
+    private static Context getContext(){
+        if(mContext==null){
+            throw new IllegalStateException("请在Application调用SPUtils.init(context)初始化context");
+        }
+        return mContext;
     }
     private static String fileName(Context context){
         String fileName = xmlName;
@@ -24,14 +39,27 @@ public class SPUtils {
     public static Set<String> getStringSet(String fileName,Context context, String key, final Set<String> defaultValue) {
         final SharedPreferences settings = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
         return settings.getStringSet(key, defaultValue);
-
     }
     public static Set<String> getStringSet(Context context, String key, final Set<String> defaultValue) {
-        return getStringSet(fileName(context),context,key,defaultValue);
+        return getStringSet(fileName(context),context,key, defaultValue);
+    }
+    public static Set<String> getStringSet(String fileName, String key, final Set<String> defaultValue) {
+        final SharedPreferences settings = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
+        return settings.getStringSet(key, defaultValue);
+    }
+    public static Set<String> getStringSet(String key, final Set<String> defaultValue) {
+        return getStringSet(fileName(getContext()),getContext(),key,defaultValue);
     }
     /********************************************************************************************************************/
+    // TODO: 2019/1/31
     public static boolean setPrefStringSet(Context context, final String key, final Set<String> value) {
         return setPrefStringSet(fileName(context),context,key,value);
+    }
+    public static boolean setPrefStringSet(final String key, final Set<String> value) {
+        return setPrefStringSet(mContext,key,value);
+    }
+    public static boolean setPrefStringSet(String fileName, final String key, final Set<String> value) {
+        return setPrefStringSet(fileName,mContext,key,value);
     }
     public static boolean setPrefStringSet(String fileName,Context context, final String key, final Set<String> value) {
         final SharedPreferences settings = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
