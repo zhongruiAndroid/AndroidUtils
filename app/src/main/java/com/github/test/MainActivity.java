@@ -3,6 +3,7 @@ package com.github.test;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -20,18 +21,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initData();
+        startActivity(new Intent(this,Main2Activity.class));
     }
 
     private void initData() {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (;;) {
                     boolean flag = isApplicationInBackground(MainActivity.this);
 //                    boolean flag = AppUtils.isAppInBackgroundInternal(MainActivity.this);
                     Log.i("=================", "=================" + flag);
                     SystemClock.sleep(1000);
-                }
             }
         }) {
         }.start();
