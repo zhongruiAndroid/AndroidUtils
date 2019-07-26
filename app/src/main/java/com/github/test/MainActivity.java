@@ -9,7 +9,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.github.androidtools.AppUtils;
+import com.github.androidtools.LocalDeviceId;
 
 import java.util.List;
 
@@ -20,9 +20,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LocalDeviceId.get().getLocalId(this, new LocalDeviceId.ReadDataListener() {
+            @Override
+            public void result(String localId) {
+                Log.e("========","========"+localId);
+            }
+        });
+
         initData();
         startActivity(new Intent(this,Main2Activity.class));
     }
+
+
 
     private void initData() {
         new Thread(new Runnable() {

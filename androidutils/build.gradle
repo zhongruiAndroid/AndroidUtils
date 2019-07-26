@@ -27,4 +27,4 @@ dependencies {
 }
 
 /******编译不通过时注释下面这行代码*******/
-apply from:'androidutils.gradle'
+//apply from:'androidutils.gradle'
