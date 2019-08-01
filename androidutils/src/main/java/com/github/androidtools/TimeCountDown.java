@@ -9,15 +9,18 @@ import android.os.Message;
  */
 public class TimeCountDown {
     public interface TimeCallback {
-        void onNext(int timeSecond);
-
+        void onNext(long time);
         void onComplete();
     }
 
     private static final int msg_what = 6000;
     private Handler handler;
-    //    private static TimeCountDown timeCountDown;
+    private long intervalTime=1000;
     private TimeCallback timeCallback;
+
+    private int timeType;
+    private final int TIME_TYPE_SECOND=1;
+    private final  int TIME_TYPE_MILLIS=2;
 
     public TimeCountDown() {
         handler = new Handler(Looper.getMainLooper()) {
@@ -27,48 +30,48 @@ public class TimeCountDown {
                 if (msg_what != msg.what || timeCallback == null) {
                     return;
                 }
-                int time = msg.arg1-1;
-                sendTime(time, timeCallback);
-                if (time == 0) {
+                long time = (long)msg.obj;
+                sendTime(timeType==TIME_TYPE_MILLIS?time:time/1000, timeCallback);
+                time = (long)msg.obj-intervalTime;
+                if (time <= 0) {
                     timeCallback.onComplete();
                     return;
                 }
                 Message message = getMessage(time);
-                handler.sendMessageDelayed(message, 1000);
+                handler.sendMessageDelayed(message, intervalTime);
             }
         };
     }
-/*    public static TimeCountDown get() {
-        if(timeCountDown==null){
-            synchronized (TimeCountDown.class){
-                if(timeCountDown==null){
-                    timeCountDown=new TimeCountDown();
-                }
-            }
-        }
-        return timeCountDown;
-    }*/
 
-    public void start(int timeSecond, TimeCallback timeCallback) {
-//        handler.removeMessages(msg_what);
-
-        this.timeCallback = timeCallback;
-        sendTime(timeSecond, timeCallback);
-
-        Message message = getMessage(timeSecond);
-
-        handler.sendMessageDelayed(message, 1000);
-
+    public void start(long timeSecond,TimeCallback timeCallback) {
+        this.timeType=TIME_TYPE_SECOND;
+        startCountdown(timeSecond*1000,0,1000,timeCallback);
     }
 
-    private Message getMessage(int time) {
+    public void startForSecond(long timeSecond,long delayTimeSecond,long intervalTimeSecond,TimeCallback timeCallback) {
+        this.timeType=TIME_TYPE_SECOND;
+        startCountdown(timeSecond*1000,delayTimeSecond*1000,intervalTimeSecond*1000,timeCallback);
+
+    }
+    public void startForMillis(long timeMillis,long delayTimeMillis,long intervalTimeMillis, TimeCallback timeCallback) {
+        this.timeType=TIME_TYPE_MILLIS;
+        startCountdown(timeMillis,delayTimeMillis,intervalTimeMillis,timeCallback);
+    }
+    private void startCountdown(long timeMillis,long delayTimeMillis,long intervalTimeMillis, TimeCallback timeCallback){
+        this.intervalTime=intervalTimeMillis;
+        this.timeCallback = timeCallback;
+        Message message = getMessage(timeMillis);
+        handler.sendMessageDelayed(message, delayTimeMillis);
+    }
+
+    private Message getMessage(long time) {
         Message obtain = Message.obtain();
         obtain.what = msg_what;
-        obtain.arg1 = time;
+        obtain.obj = time;
         return obtain;
     }
 
-    private void sendTime(int timeSecond, TimeCallback timeCallback) {
+    private void sendTime(long timeSecond, TimeCallback timeCallback) {
         if (timeCallback != null) {
             timeCallback.onNext(timeSecond);
         }
