@@ -29,6 +29,7 @@ public abstract class TextIntervalWatcher implements TextWatcher {
                 if(isFirst||!TextUtils.equals(currentStr,lastStr)){
                     lastStr=currentStr;
                     isFirst=false;
+                    //有间隔，后续变化的文本
                     afterTextIntervalChanged(true,lastStr);
                 }
             }
@@ -36,6 +37,7 @@ public abstract class TextIntervalWatcher implements TextWatcher {
     }
     @Override
     public void afterTextChanged(final Editable s) {
+        //一开始改变的文本内容
         afterTextIntervalChanged(false,s);
         currentStr=s;
         handler.removeCallbacks(runnable);
